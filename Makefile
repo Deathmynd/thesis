@@ -7,6 +7,10 @@ TARGETFILES?=	preamble.tex \
 		title.tex \
 		abstract.tex \
 		introduction.tex \
+		targeting.tex \
+		intellectualSystem.tex \
+		cloud.tex \
+		architecture.tex \
 		chapter01.tex \
 		chapter02.tex \
 		chapter03.tex \
