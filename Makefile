@@ -11,6 +11,7 @@ TARGETFILES?=	preamble.tex \
 		intellectualSystem.tex \
 		cloud.tex \
 		architecture.tex \
+		developing.tex \
 		chapter01.tex \
 		chapter02.tex \
 		chapter03.tex \

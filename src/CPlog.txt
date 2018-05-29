@@ -1,0 +1,5 @@
+23:35:41 [DEBUG]:	ServerBase->write_responce
+23:35:41 [DEBUG]:	Connection->set_timeout
+23:35:41 [INFO]:	Get unknown :10.0.0.1//favicon.ico
+23:35:41 [INFO]:	Returned file: getHttpsServer.html23:35:41 [DEBUG]:	Responce->write 7
+23:35:41 [DEBUG]:	Responce->write 3
