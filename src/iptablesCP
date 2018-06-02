@@ -1,0 +1,52 @@
+#!/bin/sh
+iptables -t mangle -F
+iptables -t filter -F
+iptables -t nat -F
+iptables -t raw -F
+
+
+iptables -A INPUT -i lo -j ACCEPT
+
+# Настройка wifi
+
+# Создаем цепочку internet
+# Новые клиенты будут перенаправляться на 80 порт
+# Маркированные пакеты не авторизованных клиентов будут отбрасываться
+iptables -N internet -t mangle
+
+iptables -t mangle -A PREROUTING -i wlan1 -j internet
+
+#маркируем все пакеты
+iptables -t mangle -A internet -j MARK --set-mark 99
+
+#TODO получить ip автоматически.
+# все маркированные пакеты которые идут на 80 порт отправляем на наш сервер
+iptables -t nat -A PREROUTING -m mark --mark 99 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.1
+iptables -t nat -A PREROUTING -m mark --mark 99 -p tcp --dport 443 -j DNAT --to-destination 10.0.0.1
+
+
+#Разрешаем получение ответов на запросы с сервера
+iptables -t filter -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+#Разрешаем доступ к веб серверу, серверам проверки сертификата и днс
+#Запрещаем неизвестные/неожидаемые пакеты, направленные серверу
+
+iptables -t filter -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --dport 8401 -j ACCEPT
+iptables -t filter -A INPUT -p udp --dport 67 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --dport 67 -j ACCEPT
+iptables -t filter -A INPUT -p udp --dport 53 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --dport 53 -j ACCEPT
+iptables -t filter -A INPUT -m mark --mark 99 -j DROP
+
+
+# Enable Internet connection sharing
+echo "1" > /proc/sys/net/ipv4/ip_forward
+
+#Запрещаем все маркеровнные пакеты
+iptables -t filter -A FORWARD -m mark --mark 99 -j DROP
+
+iptables -t nat -A POSTROUTING -s 10.0.0.0/24 ! -d 10.0.0.0/24 -j MASQUERADE
+
+
