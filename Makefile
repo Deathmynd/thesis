@@ -6,6 +6,7 @@ TARGETFILES?=	preamble.tex \
 		settings.tex \
 		title.tex \
 		abstract.tex \
+		nomenclature.tex \
 		introduction.tex \
 		targeting.tex \
 		intellectualSystem.tex \
