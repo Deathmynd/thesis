@@ -13,6 +13,7 @@ TARGETFILES?=	preamble.tex \
 		cloud.tex \
 		architecture.tex \
 		developing.tex \
+		testing.tex \
 		chapter01.tex \
 		chapter02.tex \
 		chapter03.tex \
