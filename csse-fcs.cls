@@ -197,10 +197,10 @@
   references%
 }
 \newcommand\stats@appendix{%
-  \cyrp\cyrr\cyri\cyrl\cyro\cyrzh\cyre\cyrn\cyri\cyrishrt%
+  \cyrp\cyrr\cyri\cyrl\cyro\cyrzh\cyre\cyrn\cyri\cyre%
 }
 \newcommand\stats@appendix@en{%
-  appendicies%
+  appendix%
 }
 \newcommand\@stats[4]{%
   \stats@report%
@@ -218,7 +218,7 @@
 %  }%
   \IfEq{#4}{0}{}{%
   , #4~\stats@appendix%
-  }%
+  }.%
 }
 \newcommand\@stats@en[4]{%
   \stats@report@en%
@@ -236,7 +236,7 @@
 %  }%
   \IfEq{#4}{0}{}{%
   , #4~\stats@appendix@en%
-  }%
+  }.%
 }
 
 \newcommand\pagecount[1]{%
