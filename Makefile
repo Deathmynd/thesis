@@ -1,6 +1,6 @@
 TARGET?=	master_thesis
 BIBFILE?=	thesis.bib
-NOMFILE?=	thesis.nlo
+NOMFILE?=	master_thesis.nlo
 
 TARGETFILES?=	preamble.tex \
 		settings.tex \

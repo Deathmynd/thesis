@@ -241,6 +241,7 @@ public class AsyncServices {
             return;
         }
 
+        //TODO do action
         System.out.println("Send sms:\"" + action.getDescription() + "\" "
         + "to client with phone " + client.getPhone()
         + ". Action id: " + action.getId());
